@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Елена Хорошева — бренд- и продакт-менеджер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFEDE6;
+    --paper-alt:#E4E0D2;
+    --ink:#17211E;
+    --ink-soft:#4B554F;
+    --teal:#1F5C54;
+    --teal-dark:#123430;
+    --amber:#E8A33D;
+    --brick:#B8472A;
+    --line:#D2CCB9;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  h1,h2,h3{font-family:'Unbounded',sans-serif;margin:0;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(239,237,230,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .nav-name{font-family:'Unbounded';font-weight:700;font-size:15px;letter-spacing:.02em;}
+  .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
+  .nav-links a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;padding-bottom:4px;border-bottom:2px solid transparent;transition:border-color .15s ease;}
+  .nav-links a:hover{border-color:var(--amber);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;}
+  .eyebrow{
+    font-family:'JetBrains Mono';font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--teal);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:2px;background:var(--brick);display:inline-block;}
+  .hero h1{font-size:clamp(36px,5vw,54px);font-weight:900;line-height:1.05;letter-spacing:-.01em;}
+  .hero h1 span{color:var(--teal);}
+  .hero p.lead{font-size:18px;color:var(--ink-soft);max-width:520px;margin:22px 0 32px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 24px;border-radius:100px;font-weight:700;font-size:15px;
+    text-decoration:none;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{background:var(--teal);color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(31,92,84,.28);}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--brick);}
+
+  /* price-tag signature element */
+  .tag{
+    position:relative;
+    background:var(--amber);
+    color:var(--teal-dark);
+    padding:22px 26px 22px 38px;
+    clip-path:polygon(26px 0,100% 0,100% 100%,26px 100%,0 50%);
+    display:inline-block;
+    box-shadow:0 14px 26px rgba(184,71,42,.18);
+  }
+  .tag::after{
+    content:"";position:absolute;left:13px;top:50%;transform:translateY(-50%);
+    width:9px;height:9px;border-radius:50%;background:var(--paper);
+  }
+  .tag .num{font-family:'Unbounded';font-weight:900;font-size:34px;line-height:1;display:block;}
+  .tag .label{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.05em;text-transform:uppercase;margin-top:6px;display:block;}
+  .hero-card{
+    background:var(--teal-dark);
+    border-radius:20px;
+    padding:36px 32px;
+    color:#F3F1E8;
+    position:relative;
+  }
+  .hero-card .tag{margin-bottom:22px;}
+  .hero-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .hero-card li{display:flex;gap:12px;font-size:14.5px;color:#DCE3DF;}
+  .hero-card li b{color:#fff;}
+  .hero-card li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);margin-top:7px;flex:none;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{padding:64px 0;}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:36px;}
+  .sec-head .idx{font-family:'JetBrains Mono';color:var(--brick);font-weight:600;font-size:14px;}
+  .sec-head h2{font-size:28px;font-weight:800;}
+  .sec-sub{color:var(--ink-soft);max-width:560px;margin:-24px 0 36px;font-size:15px;}
+
+  /* ---------- SPEC TABLE (characteristics -> benefits) ---------- */
+  .specs{border-top:1px solid var(--line);}
+  .spec-row{
+    display:grid;grid-template-columns:1fr 40px 1fr;gap:20px;align-items:center;
+    padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .spec-row .fact{font-family:'JetBrains Mono';font-size:14px;color:var(--ink-soft);}
+  .spec-row .fact b{color:var(--ink);font-weight:600;}
+  .arrow{color:var(--amber);font-size:20px;text-align:center;}
+  .spec-row .benefit{font-size:15.5px;font-weight:600;}
+
+  /* ---------- CASE CARDS ---------- */
+  .cases-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .case-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 26px 24px;position:relative;overflow:hidden;
+    transition:box-shadow .18s ease, transform .18s ease;
+  }
+  .case-card:hover{box-shadow:0 16px 34px rgba(23,33,30,.10);transform:translateY(-3px);}
+  .case-card .co{
+    font-family:'JetBrains Mono';font-size:12.5px;color:var(--teal);font-weight:600;
+    text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px;
+  }
+  .case-card h3{font-size:19px;font-weight:700;line-height:1.3;margin-bottom:12px;padding-right:86px;}
+  .case-card p{font-size:14.5px;color:var(--ink-soft);margin:0 0 16px;}
+  .case-card .metric{
+    position:absolute;top:22px;right:-6px;
+    background:var(--amber);color:var(--teal-dark);
+    font-family:'Unbounded';font-weight:700;font-size:13px;
+    padding:8px 16px 8px 14px;
+    clip-path:polygon(12px 0,100% 0,100% 100%,12px 100%,0 50%);
+  }
+  .case-card .results{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+  .case-card .results li{font-size:13.5px;display:flex;gap:8px;}
+  .case-card .results li::before{content:"—";color:var(--brick);flex:none;}
+
+  /* ---------- SKILLS ---------- */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    background:var(--paper-alt);border:1px solid var(--line);
+    padding:9px 16px;border-radius:100px;font-size:13.5px;font-weight:600;
+    color:var(--teal-dark);
+  }
+
+  /* ---------- PORTFOLIO LINK CARDS ---------- */
+  .link-card{
+    display:flex;flex-direction:column;justify-content:space-between;gap:14px;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;text-decoration:none;color:var(--ink);
+    transition:box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+  }
+  .link-card:hover{box-shadow:0 16px 34px rgba(23,33,30,.10);transform:translateY(-3px);border-color:var(--teal);}
+  .link-card .lc-title{font-size:16.5px;font-weight:700;line-height:1.3;}
+  .link-card .lc-desc{font-size:14px;color:var(--ink-soft);}
+  .link-card .lc-go{font-family:'JetBrains Mono';font-size:13px;font-weight:600;color:var(--teal);}
+  .featured-card{
+    display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
+    background:var(--teal-dark);color:#F3F1E8;border-radius:var(--radius);
+    padding:26px 28px;text-decoration:none;margin-bottom:20px;
+    transition:transform .18s ease;
+  }
+  .featured-card:hover{transform:translateY(-3px);}
+  .featured-card .fc-eyebrow{font-family:'JetBrains Mono';font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--amber);margin-bottom:6px;}
+  .featured-card .fc-title{font-size:19px;font-weight:700;color:#fff;}
+  .featured-card .fc-desc{font-size:14px;color:#DCE3DF;margin-top:4px;}
+  .featured-card .fc-go{flex:none;font-family:'JetBrains Mono';font-size:13px;font-weight:700;color:var(--amber);white-space:nowrap;}
+  .links-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .more-portfolio{display:block;text-align:center;margin-top:24px;color:var(--teal);font-weight:700;text-decoration:none;font-size:14.5px;}
+  .more-portfolio:hover{color:var(--brick);}
+  @media (max-width:860px){.links-grid{grid-template-columns:1fr;}}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    background:var(--teal-dark);color:#F3F1E8;padding:70px 0 40px;margin-top:40px;
+  }
+  footer .eyebrow{color:var(--amber);}
+  footer .eyebrow::before{background:var(--amber);}
+  footer h2{color:#fff;font-size:30px;font-weight:800;max-width:520px;}
+  .contact-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;margin-top:32px;}
+  .contact-links{display:flex;flex-direction:column;gap:10px;font-size:15px;}
+  .contact-links a{color:#F3F1E8;text-decoration:none;border-bottom:1px solid rgba(243,241,232,.35);}
+  .contact-links a:hover{border-color:var(--amber);color:var(--amber);}
+  .contact-buttons{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .btn-sm{padding:10px 18px;font-size:13.5px;}
+  .btn-outline-light{background:transparent;color:#F3F1E8;border:1.5px solid rgba(243,241,232,.5);}
+  .btn-outline-light:hover{border-color:var(--amber);color:var(--amber);}
+  .foot-note{margin-top:56px;padding-top:20px;border-top:1px solid rgba(243,241,232,.15);font-size:12.5px;color:#9EAEA7;font-family:'JetBrains Mono';}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .5s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .cases-grid{grid-template-columns:1fr;}
+    .spec-row{grid-template-columns:1fr;text-align:left;}
+    .arrow{transform:rotate(90deg);text-align:left;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">ЕЛЕНА ХОРОШЕВА</div>
+    <ul class="nav-links">
+      <li><a href="#profile">Профиль</a></li>
+      <li><a href="#specs">Чем полезна</a></li>
+      <li><a href="#cases">Кейсы</a></li>
+      <li><a href="#portfolio">Портфолио</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="profile">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">бренд- и продакт-менеджер · e-commerce</div>
+      <h1>Превращаю технические характеристики в товар, который<span> покупают</span></h1>
+      <p class="lead">19 лет в рознице и e-commerce: от полки в офлайне до карточки на Wildberries и Ozon. Разбираю конкурентов, ставлю ТЗ дизайнерам, довожу продукт от эталонного образца до продающего текста.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://drive.google.com/file/d/10gIhk5_PiZMHaBp9HhFW4CBoh81__CVJ/view?usp=drive_link" target="_blank" rel="noopener">Скачать резюме (PDF) →</a>
+        <a class="btn btn-ghost" href="#contact">Написать</a>
+      </div>
+    </div>
+    <div class="hero-card reveal">
+      <span class="tag"><span class="num">19</span><span class="label">лет опыта</span></span>
+      <ul>
+        <li><b>63–104 SKU</b> — новые товарные линейки, выведенные в ассортимент</li>
+        <li><b>62 завода</b> — личных аудитов поставщиков в Китае за год</li>
+        <li><b>38 категорий</b> — разобрано через Mpstats на предмет спроса и конкурентов</li>
+        <li><b>+30%</b> — рост прибыли филиала за счёт маркетинговых программ</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section id="specs">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>Характеристики → преимущества</h2></div>
+    <p class="sec-sub">Это ровно то, что я делаю с чужими товарами каждый день. Вот то же самое — про меня.</p>
+    <div class="specs reveal">
+      <div class="spec-row">
+        <div class="fact"><b>19 лет</b> в ритейле и e-commerce, от call-центра до бренд-менеджмента</div>
+        <div class="arrow">→</div>
+        <div class="benefit">Вижу разницу между реальным трендом и шумом — и знаю, как товар выглядит и на полке, и на экране</div>
+      </div>
+      <div class="spec-row">
+        <div class="fact">Работа с <b>62 заводами-поставщиками</b> в Китае, техпаспорта и спецификации</div>
+        <div class="arrow">→</div>
+        <div class="benefit">Ставлю дизайнеру точное ТЗ и не пропущу в карточку неточную характеристику</div>
+      </div>
+      <div class="spec-row">
+        <div class="fact">Mpstats, Яндекс.Метрика, Excel — <b>анализ 38+ товарных категорий</b></div>
+        <div class="arrow">→</div>
+        <div class="benefit">Решения на цифрах: что реально продаёт товар, а не «мне кажется»</div>
+      </div>
+      <div class="spec-row">
+        <div class="fact">Опыт в <b>25+ товарных категориях</b> — от бытовой техники до автокомпонентов</div>
+        <div class="arrow">→</div>
+        <div class="benefit">Быстро разбираюсь в новой нише и нахожу в ней главные смыслы для покупателя</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>Кейсы</h2></div>
+    <p class="sec-sub">Ниже — четыре последних места коротко, с цифрами по каждому.</p>
+    <div class="cases-grid">
+
+      <div class="case-card reveal">
+        <span class="metric">+15 SKU</span>
+        <div class="co">Максмолл · Томск</div>
+        <h3>Ассортимент и карточки для розничной сети электроники</h3>
+        <p>Разбирала карточки топовых конкурентов на Wildberries и Ozon, ловила тренды в офлайн-рознице и проверяла, есть ли им место на маркетплейсах.</p>
+        <ul class="results">
+          <li>38 товарных категорий проанализировано через Mpstats</li>
+          <li>15 новых продуктов доведено до полки</li>
+          <li>20 карточек СТМ переведены из характеристик в преимущества</li>
+        </ul>
+      </div>
+
+      <div class="case-card reveal">
+        <span class="metric">104 SKU</span>
+        <div class="co">Forte Technologie & Produktion</div>
+        <h3>Запуск категории бытовой техники с нуля</h3>
+        <p>Ставила ТЗ дизайнерам по эталонным образцам техники, лично работала с заводами в Китае — от спецификации до готовой карточки.</p>
+        <ul class="results">
+          <li>63 SKU — новая категория МБТ с нуля</li>
+          <li>+104 SKU в смежных категориях</li>
+          <li>62 завода лично проверено за год</li>
+        </ul>
+      </div>
+
+      <div class="case-card reveal">
+        <span class="metric">+30%</span>
+        <div class="co">OST-COM · ЮФО</div>
+        <h3>Рост прибыли филиала через партнёрские программы</h3>
+        <p>Реализовала маркетинговые активности и мотивационные программы для розничных партнёров региона.</p>
+        <ul class="results">
+          <li>+30% прибыль филиала за год</li>
+          <li>+40% по ключевому бренду</li>
+          <li>+30% закупки у 7 ключевых клиентов ЮФО</li>
+        </ul>
+      </div>
+
+      <div class="case-card reveal">
+        <span class="metric">+20%</span>
+        <div class="co">Профит Лига · Ростов-на-Дону</div>
+        <h3>Программа лояльности для розничных клиентов</h3>
+        <p>Разработала и запустила бонусную механику, адаптировала федеральные маркетинговые инициативы под регион.</p>
+        <ul class="results">
+          <li>+20% средний чек уже в первый месяц</li>
+          <li>рост маркетингового бюджета от поставщиков</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">03</span><h2>Ассортимент и аналитика</h2></div>
+    <p class="sec-sub">Реальные примеры вывода товара и рабочие отчёты — открываются сразу, без перехода на другой сайт.</p>
+
+    <a class="featured-card reveal" href="https://www.ozon.ru/seller/forte-holding/bytovaya-tehnika-10500/making-oasis-everywhere-85936284/?miniapp=seller_564392" target="_blank" rel="noopener">
+      <div>
+        <div class="fc-eyebrow">Выведенный ассортимент · Ozon</div>
+        <div class="fc-title">Oasis · Making Everywhere — бытовая и климатическая техника</div>
+        <div class="fc-desc">Полный цикл вывода бренда с нуля: от разработки товара до продающей карточки</div>
+      </div>
+      <div class="fc-go">Смотреть на Ozon →</div>
+    </a>
+
+    <div class="links-grid">
+      <a class="link-card reveal" href="https://docs.google.com/spreadsheets/d/1b-wm_k9ozWIKTqRWS6BUzr4BQQhfKzVCh1pvXO1q5CE/edit?usp=sharing" target="_blank" rel="noopener">
+        <div>
+          <div class="lc-title">Шлифовальные машинки</div>
+          <div class="lc-desc">Анализ категории, конкурентов и ценообразования</div>
+        </div>
+        <div class="lc-go">Открыть отчёт →</div>
+      </a>
+      <a class="link-card reveal" href="https://docs.google.com/spreadsheets/d/1NQgu1ecMhGFmzliFuXYOoPOi0SnnYX6PSMdxP0z9MGI/edit?usp=sharing" target="_blank" rel="noopener">
+        <div>
+          <div class="lc-title">Роботы-мойщики окон</div>
+          <div class="lc-desc">Анализ категории, конкурентов и ценообразования</div>
+        </div>
+        <div class="lc-go">Открыть отчёт →</div>
+      </a>
+      <a class="link-card reveal" href="https://docs.google.com/spreadsheets/d/1Pp850F7qh_2nlt3qk_l6LOg8VtTKjDCjjmNl0walxG8/edit?usp=sharing" target="_blank" rel="noopener">
+        <div>
+          <div class="lc-title">Архив промо-акций</div>
+          <div class="lc-desc">Механики, которые увеличили продажи</div>
+        </div>
+        <div class="lc-go">Открыть отчёт →</div>
+      </a>
+      <a class="link-card reveal" href="https://disk.yandex.ru/i/7FXZ-A6Fd7k66w" target="_blank" rel="noopener">
+        <div>
+          <div class="lc-title">Программа лояльности</div>
+          <div class="lc-desc">Баллы, призы, рост LTV — разработана с нуля</div>
+        </div>
+        <div class="lc-go">Открыть →</div>
+      </a>
+    </div>
+
+    <a class="more-portfolio" href="https://ekhorosheva1105-cyber.github.io/elenakhorosheva.github.io/" target="_blank" rel="noopener">Ещё: упаковка, анонсы, email-рассылки — в полном портфолио →</a>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">04</span><h2>С чем работаю</h2></div>
+    <div class="chips reveal">
+      <span class="chip">Wildberries / Ozon</span>
+      <span class="chip">Mpstats</span>
+      <span class="chip">ТЗ на инфографику</span>
+      <span class="chip">Продающие тексты</span>
+      <span class="chip">SEO для маркетплейсов</span>
+      <span class="chip">Переговоры с поставщиками</span>
+      <span class="chip">Техспецификации</span>
+      <span class="chip">Яндекс.Директ</span>
+      <span class="chip">Excel</span>
+      <span class="chip">Битрикс24</span>
+      <span class="chip">Анализ конкурентов</span>
+      <span class="chip">Категорийный менеджмент</span>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="eyebrow">на связи</div>
+    <h2>Расскажите о вакансии — отвечу в тот же день</h2>
+    <div class="contact-grid">
+      <div class="contact-links">
+        <a href="mailto:ekhorosheva@mail.ru">ekhorosheva@mail.ru</a>
+        <a href="tel:+79045008444">+7 (904) 500-84-44</a>
+        <a href="https://ekhorosheva1105-cyber.github.io/elenakhorosheva.github.io" target="_blank" rel="noopener">Портфолио на GitHub →</a>
+        <a href="https://drive.google.com/drive/folders/1rHaUrFvGWQ6LQla6ovbsz6mOXa8o1xq1?usp=drive_link" target="_blank" rel="noopener">Примеры ТЗ и карточек (Google Drive) →</a>
+      </div>
+      <div class="contact-buttons">
+        <a class="btn btn-outline-light btn-sm" href="https://drive.google.com/file/d/10gIhk5_PiZMHaBp9HhFW4CBoh81__CVJ/view?usp=drive_link" target="_blank" rel="noopener">Скачать резюме (PDF) →</a>
+        <a class="btn btn-primary" href="mailto:ekhorosheva@mail.ru">Написать письмо</a>
+      </div>
+    </div>
+    <div class="foot-note">РОСТОВ-НА-ДОНУ · ГОТОВА К ГИБРИДНОМУ И УДАЛЁННОМУ ФОРМАТУ</div>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
